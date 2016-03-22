@@ -1,0 +1,20 @@
+{
+    "devtools_port": 9090,
+    "startup_app": {
+        "name": "hot-reload",
+        "url": "http://localhost:3000/index.html",
+        "uuid": "hot-reload",
+        "applicationIcon": "http://localhost:3000/favicon.ico",
+        "autoShow": true
+    },
+    "runtime": {
+        "arguments": "",
+        "version": "stable"
+    },
+    "shortcut": {
+        "company": "OpenFin",
+        "description": "provides a cache for openfin windows",
+        "icon": "http://localhost:3000/favicon.ico",
+        "name": "hot-reload"
+    }
+}

@@ -4,6 +4,7 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
+    "test": "node openfin-launcher.js",
     "lint": "eslint src"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "babel-preset-stage-0": "^6.0.15",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.6.2",
+    "openfin-launcher": "^0.1.8",
     "react-hot-loader": "^1.3.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
