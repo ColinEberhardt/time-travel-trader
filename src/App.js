@@ -1,34 +1,61 @@
 import React, { Component } from 'react';
+import { createStore } from 'redux';
+
+
+const reducer = (state, action) => {
+
+  // a dirty clone
+  var clonedState = JSON.parse(JSON.stringify(state));
+
+  switch (action.type) {
+    case 'ADD':
+      clonedState.newItem = '';
+      clonedState.todos.push(action.text);
+      return clonedState;
+    case 'UPDATE_NEW_ITEM':
+      clonedState.newItem = action.text;
+      return clonedState;
+    case 'DELETE_ITEM':
+      clonedState.todos.splice(action.index, 1);
+      return clonedState;
+    default:
+      return state;
+  }
+}
+
+let store = createStore(reducer, {
+  newItem: 'fish',
+  todos: ['test', 'test2']
+});
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-      newItem: 'fish',
-      todos: ['test', 'test2']
-    };
+    this.state = store.getState();
   }
 
   addItem() {
-    this.setState({
-      newItem: '',
-      todos: [...this.state.todos, this.state.newItem]
+    store.dispatch({
+      type: 'ADD',
+      text: this.state.newItem
     });
+    this.setState(store.getState());
   }
 
   updateNewItem(event) {
-    this.setState({
-      newItem: event.target.value
+    store.dispatch({
+      type: 'UPDATE_NEW_ITEM',
+      text: event.target.value
     });
+    this.setState(store.getState());
   }
 
   deleteItem(todo) {
-    const index = this.state.todos.indexOf(todo);
-    const newTodos = this.state.todos.slice();
-    newTodos.splice(index, 1);
-    this.setState({
-      todos: newTodos
+    store.dispatch({
+      type: 'DELETE_ITEM',
+      index: this.state.todos.indexOf(todo)
     });
+    this.setState(store.getState());
   }
 
   render() {
@@ -38,7 +65,7 @@ export default class App extends Component {
     );
     return (
       <div>
-        <h1>Todo List FTW!</h1>
+        <h1>Todo List FTW!!!</h1>
         <input value={this.state.newItem} onChange={this.updateNewItem.bind(this)}></input>
         <button onClick={this.addItem.bind(this)}>add</button>
         <ul>{todoList}</ul>
