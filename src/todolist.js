@@ -35,7 +35,7 @@ class TodoList extends Component {
     );
     return (
       <div>
-        <h1>Todo List FTW!!!</h1>
+        <h1>Todo List FTW!!</h1>
         <input value={this.props.state.newItem} onChange={this.props.updateNewItem}></input>
         <button onClick={this.props.addItem}>add</button>
         <ul>{todoList}</ul>
