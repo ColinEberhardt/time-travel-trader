@@ -1,17 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TodoList from './todolist';
-import { Provider } from 'react-redux';
-import todoStore from './todostore';
 import DevTools from './devtools';
+import { Provider } from 'react-redux';
+import TradeTicket from './trade-ticket';
+import createFxTradeStore from './trade-store';
 
-let store = todoStore();
-
+let store = createFxTradeStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <TodoList />
+      <TradeTicket />
       <DevTools />
     </div>
   </Provider>,
