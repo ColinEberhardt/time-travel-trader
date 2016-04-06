@@ -7,41 +7,42 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    deleteItem(id) {
-      dispatch({
-        type: 'DELETE_ITEM',
-        id
-      });
-    },
-    addItem() {
-      dispatch({
-        type: 'ADD'
-      });
-    },
-    updateNewItem(event) {
-      dispatch({
-        type: 'UPDATE_NEW_ITEM',
-        text: event.target.value
-      });
+    actions: {
+      deleteItem(id) {
+        dispatch({
+          type: 'DELETE_ITEM',
+          id
+        });
+      },
+      addItem() {
+        dispatch({
+          type: 'ADD'
+        });
+      },
+      updateNewItem(event) {
+        dispatch({
+          type: 'UPDATE_NEW_ITEM',
+          text: event.target.value
+        });
+      }
     }
   }
 }
 
-class TodoList extends Component {
-  render() {
-    const todoList = this.props.state.todos.map(d => (
-        <li>{d.text} <button onClick={this.props.deleteItem.bind(this, d.id)}>x</button></li>
-      )
-    );
-    return (
-      <div>
-        <h1>Todo List FTW!!</h1>
-        <input value={this.props.state.newItem} onChange={this.props.updateNewItem}></input>
-        <button onClick={this.props.addItem}>add</button>
-        <ul>{todoList}</ul>
-      </div>
-    );
-  }
-}
+const TodoItem = props =>
+  <div>
+    {props.text}
+    <button onClick={props.delete.bind(this, props.id)}>delete</button>
+  </div>
+
+const TodoList = ({state, actions}) =>
+  <div>
+    <h1>Todo List FTW!!</h1>
+    <input value={state.newItem} onChange={actions.updateNewItem}></input>
+    <button onClick={actions.addItem}>add</button>
+    <ul>{state.todos.map(d =>
+        <li><TodoItem text={d.text} delete={actions.deleteItem} id={d.id}/></li>
+    )}</ul>
+  </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

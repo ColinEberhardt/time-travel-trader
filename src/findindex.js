@@ -1,3 +1,5 @@
+// a polyfil for findIndex  - this is required by OpenFin
+
 if (!Array.prototype.findIndex) {
   Array.prototype.findIndex = function(predicate) {
     if (this === null) {
