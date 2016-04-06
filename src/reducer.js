@@ -1,23 +1,14 @@
-import Todo from './todo';
-import './findindex';
+import validate from './validate';
 
-const reducer = (state, action) => {
-
+const reducer = (previousState, action) => {
   // a dirty clone
-  var clonedState = JSON.parse(JSON.stringify(state));
+  var state = JSON.parse(JSON.stringify(previousState));
 
   switch (action.type) {
-    case 'ADD':
-      clonedState.todos.push(new Todo(clonedState.newItem));
-      clonedState.newItem = '';
-      return clonedState;
-    case 'UPDATE_NEW_ITEM':
-      clonedState.newItem = action.text;
-      return clonedState;
-    case 'DELETE_ITEM':
-      const index = clonedState.todos.findIndex(d => d.id === action.id);
-      clonedState.todos.splice(index, 1);
-      return clonedState;
+    case 'UPDATE_AMOUNT':
+      state.amount = action.amount;
+      state.errors = validate(state);
+      return state;
     default:
       return state;
   }
