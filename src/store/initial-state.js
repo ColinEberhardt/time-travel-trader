@@ -10,6 +10,6 @@ const initialState = {
     amount: 1000,
     error: ''
   }
-};
+}
 
-export default initialState;
+export default initialState

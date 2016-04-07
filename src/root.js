@@ -1,11 +1,11 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 
-import DevTools from './devtools';
-import App from './components/app';
-import reducer from './store/reducer';
-import initialState from './store/initial-state';
+import DevTools from './devtools'
+import App from './components/app'
+import reducer from './store/reducer'
+import initialState from './store/initial-state'
 
 const store = createStore(reducer, initialState, DevTools.instrument())
 
@@ -15,6 +15,6 @@ const Root = () =>
       <App />
       <DevTools />
     </div>
-  </Provider>;
+  </Provider>
 
-export default Root;
+export default Root

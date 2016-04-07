@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const Errors = ({errors}) =>
   <div>
@@ -8,4 +8,4 @@ const Errors = ({errors}) =>
     </ul>
   </div>
 
-export default Errors;
+export default Errors

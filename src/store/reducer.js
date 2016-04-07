@@ -1,20 +1,20 @@
-import validate from './validate';
+import validate from './validate'
 
 const reducer = (previousState, action) => {
   // a dirty clone
-  var state = JSON.parse(JSON.stringify(previousState));
+  var state = JSON.parse(JSON.stringify(previousState))
 
   switch (action.type) {
     case 'LIFECYCLE_TRANSITION':
-      state.lifecycle = action.lifecycle;
-      return state;
+      state.lifecycle = action.lifecycle
+      return state
     case 'UPDATE_AMOUNT':
-      state.amount = action.amount;
-      state.errors = validate(state);
-      return state;
+      state.amount = action.amount
+      state.errors = validate(state)
+      return state
     default:
-      return state;
+      return state
   }
 }
 
-export default reducer;
+export default reducer
