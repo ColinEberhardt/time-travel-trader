@@ -1,23 +1,18 @@
 import React from 'react';
-import DevTools from './devtools';
 import { Provider } from 'react-redux';
-import TradeTicket from './trade-ticket';
-
 import { createStore } from 'redux';
-import reducer from './reducer';
 
-const defaultState = {
-  currency: 'EURUSD',
-  amount: 1000,
-  error: ''
-};
+import DevTools from './devtools';
+import App from './components/app';
+import reducer from './store/reducer';
+import initialState from './store/initial-state';
 
-const store = createStore(reducer, defaultState, DevTools.instrument())
+const store = createStore(reducer, initialState, DevTools.instrument())
 
 const Root = () =>
   <Provider store={store}>
     <div>
-      <TradeTicket />
+      <App />
       <DevTools />
     </div>
   </Provider>;

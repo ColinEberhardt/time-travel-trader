@@ -9,6 +9,7 @@ const amountReallyLarge = state =>
 
 const validators = [amountToLarge, amountToSmall, amountReallyLarge];
 
+// is there a better way to do this?
 const validate = state =>
   validators.map(d => d(state)).filter(d => d !== '');
 

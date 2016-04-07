@@ -5,6 +5,9 @@ const reducer = (previousState, action) => {
   var state = JSON.parse(JSON.stringify(previousState));
 
   switch (action.type) {
+    case 'LIFECYCLE_TRANSITION':
+      state.lifecycle = action.lifecycle;
+      return state;
     case 'UPDATE_AMOUNT':
       state.amount = action.amount;
       state.errors = validate(state);
