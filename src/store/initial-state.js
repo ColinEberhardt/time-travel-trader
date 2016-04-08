@@ -9,7 +9,8 @@ const initialState = {
     progress: 0
   },
   order: {
-    currency: 'EURUSD',
+    baseCurrency: 'EUR',
+    quoteCurrency: 'GBP',
     amount: 1000,
     error: ''
   }

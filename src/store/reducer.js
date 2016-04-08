@@ -11,9 +11,12 @@ const reducer = (previousState, action) => {
     case 'INITIALIZATION_PROGRESS_UPDATE':
       state.initialisation.progress = action.progress
       return state
+    case 'CHANGE_CURRENCY':
+      state.order[`${action.side}Currency`] = action.currency
+      return state
     case 'UPDATE_AMOUNT':
-      state.amount = action.amount
-      state.errors = validate(state)
+      state.order.amount = action.amount
+      state.order.errors = validate(state)
       return state
     default:
       return state
