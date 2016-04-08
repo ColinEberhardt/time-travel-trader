@@ -1,5 +1,5 @@
-var path = require('path');
-var webpack = require('webpack');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   devtool: 'source-map',
@@ -21,6 +21,13 @@ module.exports = {
       test: /\.js$/,
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
-    }]
+    }],
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        loaders: ['eslint'],
+        include: path.join(__dirname, 'src')
+      }
+    ]
   }
-};
+}

@@ -15,14 +15,20 @@ const componentForLifecycle = (lifecycle) => {
       return <Login/>
     case 'INITIALISING':
       return <Initialising/>
-    case 'LOGGED_IN':
+    case 'TRADING':
       return <TradeTicket/>
   }
 }
 
 const App = (props) =>
-  <div>
-    <h2>Colins trading app</h2>
+  <div className='container-fixed'>
+    <nav className='navbar navbar-default'>
+      <div className='container-fluid'>
+        <div className='navbar-header'>
+          <a className='navbar-brand' href='#'>Fake Trader</a>
+        </div>
+      </div>
+    </nav>
     {componentForLifecycle(props.state.lifecycle)}
   </div>
 
