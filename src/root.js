@@ -7,7 +7,7 @@ import App from './components/app'
 import reducer from './store/reducer'
 import initialState from './store/initial-state'
 
-const store = createStore(reducer, initialState, DevTools.instrument())
+const store = createStore(reducer, {}, DevTools.instrument())
 
 const Root = () =>
   <Provider store={store}>

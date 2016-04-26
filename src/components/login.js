@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    credentials: state.credentials
+    credentials: state.login
   }
 }
 
@@ -43,11 +43,11 @@ const Login = props =>
       <form>
         <div className='form-group'>
           <label>Username</label>
-          <input className='form-control' value={props.credentials.username}></input>
+          <input className='form-control' defaultValue={props.credentials.username}></input>
         </div>
         <div className='form-group'>
           <label>Password</label>
-          <input className='form-control' value={props.credentials.password}></input>
+          <input className='form-control' defaultValue={props.credentials.password}></input>
         </div>
         <button type='submit' className='btn btn-default' onClick={props.login}>login</button>
       </form>
