@@ -29,33 +29,33 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-const TradeTicket = props =>
-  <div className='row'>
-    <div className='col-md-4 col-md-offset-4'>
-      <h2>Fx Order Ticket</h2>
-      <form className='form-horizontal'>
-        <div className='form-group'>
-          <label className='col-sm-2 control-label'>Currency</label>
-          <div className='col-sm-10'>
-            <div className='row'>
-              <div className='col-sm-6'>
-                <CurrencySelector selected={props.baseCurrency} changed={currency => props.currencyChanged(currency, 'BASE')}/>
-              </div>
-              <div className='col-sm-6'>
-                <CurrencySelector selected={props.quoteCurrency} changed={currency => props.currencyChanged(currency, 'QUOTE')}/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='form-group'>
-          <label className='col-sm-2 control-label'>Amount</label>
-          <div className='col-sm-10'>
-            <input className='form-control' value={props.amount} onChange={props.amountUpdated}></input>
-          </div>
-        </div>
-      </form>
-      {props.errors ? <Errors errors={props.errors}/> : ''}
+const FormGroup = props =>
+  <div className='form-group'>
+    <label className='col-sm-2 control-label'>{props.title}</label>
+    <div className='col-sm-10'>
+      {props.children}
     </div>
+  </div>
+
+const TradeTicket = props =>
+  <div>
+    <h2>Fx Order Tickets</h2>
+    <form className='form-horizontal'>
+      <FormGroup title='Currency'>
+        <div className='row'>
+          <div className='col-sm-6'>
+            <CurrencySelector selected={props.baseCurrency} changed={currency => props.currencyChanged(currency, 'BASE')}/>
+          </div>
+          <div className='col-sm-6'>
+            <CurrencySelector selected={props.quoteCurrency} changed={currency => props.currencyChanged(currency, 'QUOTE')}/>
+          </div>
+        </div>
+      </FormGroup>
+      <FormGroup title='Amount'>
+        <input className='form-control' value={props.amount} onChange={props.amountUpdated}></input>
+      </FormGroup>
+    </form>
+    {props.errors ? <Errors errors={props.errors}/> : ''}
   </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(TradeTicket)

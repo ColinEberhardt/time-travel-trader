@@ -5,9 +5,7 @@ import TradeTicket from './trade-ticket'
 import Login from './login'
 import Initialising from './initialising'
 
-const mapStateToProps = (state) => {
-  return { state }
-}
+const mapStateToProps = (state) => ({ lifecycle: state.lifecycle })
 
 const componentForLifecycle = (lifecycle) => {
   switch(lifecycle) {
@@ -20,6 +18,11 @@ const componentForLifecycle = (lifecycle) => {
   }
 }
 
+const centredStyle = {
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}
+
 const App = (props) =>
   <div className='container-fixed'>
     <nav className='navbar navbar-default'>
@@ -29,7 +32,9 @@ const App = (props) =>
         </div>
       </div>
     </nav>
-    {componentForLifecycle(props.state.lifecycle)}
+    <div style={Object.assign({width: 500}, centredStyle)}>
+      {componentForLifecycle(props.lifecycle)}
+    </div>
   </div>
 
 export default connect(mapStateToProps)(App)

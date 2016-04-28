@@ -37,21 +37,19 @@ const mapDispatchToProps = dispatch => {
 }
 
 const Login = props =>
-  <div className='row'>
-    <div className='col-md-4 col-md-offset-4'>
-      <h2>User Login</h2>
-      <form>
-        <div className='form-group'>
-          <label>Username</label>
-          <input className='form-control' defaultValue={props.credentials.username}></input>
-        </div>
-        <div className='form-group'>
-          <label>Password</label>
-          <input className='form-control' defaultValue={props.credentials.password}></input>
-        </div>
-        <button type='submit' className='btn btn-default' onClick={props.login}>login</button>
-      </form>
-    </div>
+  <div>
+    <h2>User Logins</h2>
+    <form>
+      <div className='form-group'>
+        <label>Username</label>
+        <input className='form-control' defaultValue={props.credentials.username}></input>
+      </div>
+      <div className='form-group'>
+        <label>Password</label>
+        <input className='form-control' defaultValue={props.credentials.password}></input>
+      </div>
+      <button type='submit' className='btn btn-default' onClick={props.login}>login</button>
+    </form>
   </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
