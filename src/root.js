@@ -13,7 +13,6 @@ const Root = () =>
   <Provider store={store}>
     <div>
       <App />
-      <DevTools />
     </div>
   </Provider>
 

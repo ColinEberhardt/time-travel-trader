@@ -36,18 +36,18 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
+const InputField = props =>
+  <div className='form-group'>
+    <label>{props.title}</label>
+    <input className='form-control' defaultValue={props.defaultValue}></input>
+  </div>
+
 const Login = props =>
   <div>
-    <h2>User Logins</h2>
+    <h2>User Login</h2>
     <form>
-      <div className='form-group'>
-        <label>Username</label>
-        <input className='form-control' defaultValue={props.credentials.username}></input>
-      </div>
-      <div className='form-group'>
-        <label>Password</label>
-        <input className='form-control' defaultValue={props.credentials.password}></input>
-      </div>
+      <InputField title='Username' defaultValue={props.credentials.username} />
+      <InputField title='Password' defaultValue={props.credentials.password} />
       <button type='submit' className='btn btn-default' onClick={props.login}>login</button>
     </form>
   </div>

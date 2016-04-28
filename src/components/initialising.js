@@ -11,7 +11,8 @@ const Initialising = props =>
   <div>
     <h2>Loading ...</h2>
     <div className='progress'>
-      <div className='progress-bar progress-bar-info progress-bar-striped'  style={{'width': `${props.progress}%`}}/>
+      <div className='progress-bar progress-bar-info progress-bar-striped'
+            style={{'width': `${props.progress}%`}}/>
     </div>
   </div>
 

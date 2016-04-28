@@ -25,10 +25,10 @@ const centredStyle = {
 
 const App = (props) =>
   <div className='container-fixed'>
-    <nav className='navbar navbar-default'>
+    <nav className='navbar navbar-inverse'>
       <div className='container-fluid'>
         <div className='navbar-header'>
-          <a className='navbar-brand' href='#'>Fake Trader</a>
+          <a className='navbar-brand' href='#'>Fake Trader - Colin Eberhardt</a>
         </div>
       </div>
     </nav>
