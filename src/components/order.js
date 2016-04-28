@@ -37,7 +37,7 @@ const FormGroup = props =>
     </div>
   </div>
 
-const TradeTicket = props =>
+const Order = props =>
   <div>
     <h2>Fx Order Tickets</h2>
     <form className='form-horizontal'>
@@ -58,4 +58,4 @@ const TradeTicket = props =>
     {props.errors ? <Errors errors={props.errors}/> : ''}
   </div>
 
-export default connect(mapStateToProps, mapDispatchToProps)(TradeTicket)
+export default connect(mapStateToProps, mapDispatchToProps)(Order)

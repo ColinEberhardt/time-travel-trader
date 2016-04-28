@@ -5,14 +5,22 @@ import { createStore } from 'redux'
 import DevTools from './devtools'
 import App from './components/app'
 import reducer from './store/reducer'
-import initialState from './store/initial-state'
 
 const store = createStore(reducer, {}, DevTools.instrument())
+
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./store/reducer', () => {
+    const nextRootReducer = require('./store/reducer').default
+    store.replaceReducer(nextRootReducer)
+  })
+}
 
 const Root = () =>
   <Provider store={store}>
     <div>
       <App />
+      <DevTools />
     </div>
   </Provider>
 

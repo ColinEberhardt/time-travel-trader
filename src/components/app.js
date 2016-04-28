@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TradeTicket from './trade-ticket'
+import Order from './order'
 import Login from './login'
 import Initialising from './initialising'
 
@@ -13,8 +13,8 @@ const componentForLifecycle = (lifecycle) => {
       return <Login/>
     case 'INITIALISING':
       return <Initialising/>
-    case 'TRADING':
-      return <TradeTicket/>
+    case 'ORDER_ENTRY':
+      return <Order/>
   }
 }
 
