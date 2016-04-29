@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import * as action from '../store/reducers/login'
+
 const mapStateToProps = state => {
   return {
     state: state.login
@@ -11,47 +13,15 @@ const mapDispatchToProps = dispatch => {
   return {
     login(event) {
       event.preventDefault()
-      dispatch({
-        type: 'LOGIN'
-      })
-    },
-    login2(event) {
-      event.preventDefault()
-      dispatch({
-        type: 'LIFECYCLE_TRANSITION',
-        lifecycle: 'INITIALISING'
-      })
-      // TODO: use thunk middleware?
-      let progress = 0
-      var interval = setInterval(() =>  {
-        progress += 20
-        if (progress > 100) {
-          dispatch({
-            type: 'LIFECYCLE_TRANSITION',
-            lifecycle: 'ORDER_ENTRY'
-          })
-          clearInterval(interval)
-        } else {
-          dispatch({
-            type: 'INITIALIZATION_PROGRESS_UPDATE',
-            progress
-          })
-        }
-      }, 1000)
+      dispatch(action.login())
     },
     usernameChanged(event) {
       const username = event.target.value
-      dispatch({
-        type: 'USERNAME_CHANGED',
-        username
-      })
+      dispatch(action.usernameChanged(username))
     },
     passwordChanged(event) {
       const password = event.target.value
-      dispatch({
-        type: 'PASSWORD_CHANGED',
-        password
-      })
+      dispatch(action.passwordChanged(password))
     }
   }
 }

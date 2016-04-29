@@ -9,7 +9,8 @@ import reducer from './store/reducer'
 const store = createStore(reducer,
   compose(
     applyMiddleware(
-      require('./store/middleware/login').default
+      require('./store/middleware/login').default,
+      require('./store/middleware/initialisation').default
     ),
     DevTools.instrument()
   )
