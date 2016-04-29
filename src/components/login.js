@@ -75,6 +75,7 @@ const Login = props =>
         disabled={props.state.loginInProgress}/>
       <button type='submit' className='btn btn-default' onClick={props.login}
         disabled={!props.state.loginEnabled || props.state.loginInProgress}>login</button>
+      <p style={{display: 'inline', marginLeft: 10}}>{props.state.failureMessage}</p>
     </form>
   </div>
 

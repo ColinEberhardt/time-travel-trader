@@ -11,17 +11,25 @@ const login =  (state = {
     case 'USERNAME_CHANGED':
       state = Object.assign({}, state, {
         username: action.username,
-        usernameValid: action.username.length > 0
+        usernameValid: action.username.length > 0,
+        failureMessage: ''
       })
       break
     case 'PASSWORD_CHANGED':
       state = Object.assign({}, state, {
         password: action.password,
-        passwordValid: action.password.length > 0
+        passwordValid: action.password.length > 0,
+        failureMessage: ''
       })
       break
     case 'LOGIN':
       state = Object.assign({}, state, { loginInProgress: true })
+      break
+    case 'LOGIN_FAILED':
+      state = Object.assign({}, state, {
+        loginInProgress: false,
+        failureMessage: 'login failed, please try again'
+      })
       break
   }
 
