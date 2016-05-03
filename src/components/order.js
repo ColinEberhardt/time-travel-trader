@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import Errors from './errors'
 import CurrencySelector from './currency-selector'
+import * as order from '../store/reducers/order'
 
 function mapStateToProps(state) {
   return { order: state.order }
@@ -13,18 +14,11 @@ function mapDispatchToProps(dispatch) {
     amountUpdated(event) {
       const amount = Number.parseFloat(event.target.value)
       if (amount) {
-        dispatch({
-          type: 'UPDATE_AMOUNT',
-          amount: amount
-        })
+        dispatch(order.changeAmount(amount))
       }
     },
     currencyChanged(currency, side) {
-      dispatch({
-        type: 'CHANGE_CURRENCY',
-        side,
-        currency
-      })
+      dispatch(order.changeCurrency(currency, side))
     }
   }
 }
@@ -44,18 +38,20 @@ const Order = props =>
       <FormGroup title='Currency'>
         <div className='row'>
           <div className='col-sm-6'>
-            <CurrencySelector selected={props.baseCurrency} changed={currency => props.currencyChanged(currency, 'BASE')}/>
+            <CurrencySelector selected={props.order.baseCurrency}
+              changed={currency => props.currencyChanged(currency, order.SIDE.BASE)}/>
           </div>
           <div className='col-sm-6'>
-            <CurrencySelector selected={props.quoteCurrency} changed={currency => props.currencyChanged(currency, 'QUOTE')}/>
+            <CurrencySelector selected={props.order.quoteCurrency}
+              changed={currency => props.currencyChanged(currency, order.SIDE.QUOTE)}/>
           </div>
         </div>
       </FormGroup>
       <FormGroup title='Amount'>
-        <input className='form-control' value={props.amount} onChange={props.amountUpdated}></input>
+        <input className='form-control' value={props.order.amount} onChange={props.amountUpdated}></input>
       </FormGroup>
     </form>
-    {props.errors ? <Errors errors={props.errors}/> : ''}
+    {props.order.errors.length ? <Errors errors={props.order.errors}/> : ''}
   </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

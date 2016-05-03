@@ -4,10 +4,10 @@ const amountToSmall = state =>
 const amountToLarge = state =>
   state.amount > 5000 ? 'The amount is too big!!!' : ''
 
-const amountReallyLarge = state =>
-  state.amount > 50000 ? 'The amount is WAYYY TOO BIG!!!' : ''
+const invalidCross = state =>
+  state.baseCurrency === state.quoteCurrency ? 'The base and quote currency cannot be the same' : ''
 
-const validators = [amountToLarge, amountToSmall, amountReallyLarge]
+const validators = [amountToLarge, amountToSmall, invalidCross]
 
 // is there a better way to do this?
 const validate = state =>
