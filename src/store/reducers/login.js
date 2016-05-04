@@ -1,3 +1,5 @@
+import merge from './merge'
+
 export const USERNAME_CHANGED = 'login/USERNAME_CHANGED'
 export const PASSWORD_CHANGED = 'login/PASSWORD_CHANGED'
 export const LOGIN = 'login/LOGIN'
@@ -34,31 +36,31 @@ const reducer =  (state = {
 
   switch(action.type) {
     case USERNAME_CHANGED:
-      state = Object.assign({}, state, {
+      state = merge(state, {
         username: action.username,
         usernameValid: action.username.length > 0,
         failureMessage: ''
       })
       break
     case PASSWORD_CHANGED:
-      state = Object.assign({}, state, {
+      state = merge(state, {
         password: action.password,
         passwordValid: action.password.length > 0,
         failureMessage: ''
       })
       break
     case LOGIN:
-      state = Object.assign({}, state, { loginInProgress: true })
+      state = merge(state, { loginInProgress: true })
       break
     case LOGIN_FAILED:
-      state = Object.assign({}, state, {
+      state = merge(state, {
         loginInProgress: false,
         failureMessage: action.message
       })
       break
   }
 
-  state = Object.assign({}, state, {
+  state = merge(state, {
     loginEnabled: state.passwordValid && state.usernameValid
   })
   return state
