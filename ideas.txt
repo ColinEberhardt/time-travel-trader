@@ -1,3 +1,4 @@
 - incorrect action name in component, quick fix, and hot reload
 - fix formatting logic
 - e.g. toFixed for rounding currencies, or amount formatting
+- incorrect code for selected currency
