@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Errors = ({errors}) =>
-  <div>
-    <h3>Some bad things happened</h3>
-    <ul>
-      {errors.map(e => <li key={e}>{e}</li>)}
+  <div className='panel panel-danger'>
+    <div className='panel-heading'>Validation Errors</div>
+    <ul className='list-group panel-body'>
+      {errors.map(e => <li className='list-group-item' key={e}>{e}</li>)}
     </ul>
   </div>
 

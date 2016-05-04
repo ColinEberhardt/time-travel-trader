@@ -38,15 +38,34 @@ const FormGroup = props =>
     </div>
   </div>
 
+const PRICE_CONTAINER_STYLE = {
+  textAlign: 'center'
+}
+
+const PRICE_STYLE = {
+  fontWeight: 'bold',
+  fontSize: 30
+}
+
+const Price = props =>
+  <div className='panel panel-default'>
+    <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
+      <div style={PRICE_STYLE}>{props.price}</div>
+      <div>{props.side}</div>
+    </div>
+  </div>
+
 const Order = props =>
-  <div>
-    <h2>Fx Order Ticket</h2>
-    <form className='form-horizontal'>
-      <div className='row jumbotron'>
-        <h1 className='col-sm-6'>{props.order.bidAsk[0]}</h1>
-        <h1 className='col-sm-6'>{props.order.bidAsk[1]}</h1>
-        <p className='col-sm-6'>bid</p>
-        <p className='col-sm-6'>ask</p>
+  <div className='panel panel-info'>
+    <div className='panel-heading'>FX Order Ticket</div>
+    <form className='form-horizontal panel-body'>
+      <div className='row'>
+        <div className='col-sm-6'>
+          <Price price={props.order.bidAsk[0]} side='Bid'/>
+        </div>
+        <div className='col-sm-6'>
+          <Price price={props.order.bidAsk[1]} side='Ask'/>
+        </div>
       </div>
       <FormGroup title='Currency'>
         <div className='row'>
@@ -68,8 +87,12 @@ const Order = props =>
         <input className='form-control' value={props.order.amount}
           onChange={props.amountUpdated} onBlur={props.amountBlurred} />
       </FormGroup>
+      {props.order.errors.length ? <Errors errors={props.order.errors}/> : ''}
+      <div>
+        <div className='col-sm-6'><button type='button' className='btn btn-primary btn-danger btn-lg btn-block'>SELL</button></div>
+        <div className='col-sm-6'><button type='button' className='btn btn-primary btn-success btn-lg btn-block'>BUY</button></div>
+      </div>
     </form>
-    {props.order.errors.length ? <Errors errors={props.order.errors}/> : ''}
   </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)

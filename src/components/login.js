@@ -34,9 +34,9 @@ const InputField = props =>
   </div>
 
 const Login = props =>
-  <div>
-    <h2>Client Login</h2>
-    <form>
+  <div className='panel panel-info'>
+    <div className='panel-heading'>Client Login</div>
+    <form className='panel-body'>
       <InputField title='Username' value={props.state.username}
         onChange={props.usernameChanged} isValid={props.state.usernameValid}
         disabled={props.state.loginInProgress}/>
