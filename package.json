@@ -4,8 +4,10 @@
   "description": "Boilerplate for ReactJS project with hot code reloading",
   "scripts": {
     "start": "node server.js",
-    "test": "node openfin-launcher.js",
-    "lint": "eslint src"
+    "build": "webpack",
+    "openfin": "node openfin-launcher.js",
+    "electron": "electron electron-launcher.js",
+    "remotedev": "remotedev --hostname=localhost --port=8000 --realtime=true"
   },
   "repository": {
     "type": "git",
@@ -44,6 +46,7 @@
     "redux-devtools-dock-monitor": "^1.1.0",
     "redux-devtools-log-monitor": "^1.0.5",
     "remote-redux-devtools": "^0.3.1",
+    "remotedev-server": "^0.1.1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1",
     "webpack-polyfills-plugin": "0.0.9"

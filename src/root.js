@@ -13,7 +13,8 @@ const store = createStore(reducer,
       require('./store/middleware/initialisation').default
     ),
     devTools({
-      realtime: true
+      name: 'FakeTrader', realtime: true,
+      hostname: 'localhost', port: 8000
     })
   )
 )
