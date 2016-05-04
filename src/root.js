@@ -1,8 +1,8 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import devTools from 'remote-redux-devtools'
 
-import DevTools from './devtools'
 import App from './components/app'
 import reducer from './store/reducer'
 
@@ -12,7 +12,9 @@ const store = createStore(reducer,
       require('./store/middleware/login').default,
       require('./store/middleware/initialisation').default
     ),
-    DevTools.instrument()
+    devTools({
+      realtime: true
+    })
   )
 )
 
@@ -28,7 +30,6 @@ const Root = () =>
   <Provider store={store}>
     <div>
       <App />
-      <DevTools />
     </div>
   </Provider>
 
