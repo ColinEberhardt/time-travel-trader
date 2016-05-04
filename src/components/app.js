@@ -18,21 +18,25 @@ const componentForLifecycle = (lifecycle) => {
   }
 }
 
-const centredStyle = {
+const CENTRED_STYLE = {
   marginLeft: 'auto',
   marginRight: 'auto'
 }
 
+const CONTAINER_OFFSET_STYLE = {
+  paddingTop: '70px'
+}
+
 const App = (props) =>
-  <div className='container-fixed'>
-    <nav className='navbar navbar-inverse'>
+  <div>
+    <nav className='navbar navbar-inverse navbar-fixed-top'>
       <div className='container-fluid'>
         <div className='navbar-header'>
-          <a className='navbar-brand' href='#'>Fake Trader - Colin Eberhardt</a>
+          <span className='navbar-brand'>Fake Trader - Colin Eberhardt</span>
         </div>
       </div>
     </nav>
-    <div style={Object.assign({width: 500}, centredStyle)}>
+    <div style={Object.assign({width: 500}, CONTAINER_OFFSET_STYLE, CENTRED_STYLE)}>
       {componentForLifecycle(props.lifecycle)}
     </div>
   </div>
