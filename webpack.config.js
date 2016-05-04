@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var PolyfillsPlugin = require('webpack-polyfills-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -14,7 +15,11 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new PolyfillsPlugin([
+       'Object/assign',
+       'Array/prototype/includes'
+    ])
   ],
   module: {
     loaders: [{
