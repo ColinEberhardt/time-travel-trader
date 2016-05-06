@@ -13,10 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     amountUpdated(event) {
-      // const amount = Number.parseFloat(event.target.value)
-      // if (amount) {
       dispatch(order.changeAmount(event.target.value))
-      // }
     },
     currencyChanged(currency, side) {
       dispatch(order.changeCurrency(currency, side))
@@ -47,13 +44,17 @@ const PRICE_STYLE = {
   fontSize: 30
 }
 
-const Price = props =>
-  <div className='panel panel-default'>
-    <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
-      <div style={PRICE_STYLE}>{props.price}</div>
-      <div>{props.side}</div>
-    </div>
-  </div>
+// <Price price={props.order.bidAsk[0]} side='Bid'/>
+
+// <Price price={props.order.bidAsk[0]} side='Bid'/>
+
+// const Price = props =>
+//   <div className='panel panel-default'>
+//     <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
+//       <div style={PRICE_STYLE}>{props.price}</div>
+//       <div>{props.side}</div>
+//     </div>
+//   </div>
 
 const Order = props =>
   <div className='panel panel-info'>
@@ -61,10 +62,20 @@ const Order = props =>
     <form className='form-horizontal panel-body'>
       <div className='row'>
         <div className='col-sm-6'>
-          <Price price={props.order.bidAsk[0]} side='Bid'/>
+          <div className='panel panel-default'>
+            <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
+              <div style={PRICE_STYLE}>{props.order.bidAsk[0]}</div>
+              <div>Bid</div>
+            </div>
+          </div>
         </div>
         <div className='col-sm-6'>
-          <Price price={props.order.bidAsk[1]} side='Ask'/>
+        <div className='panel panel-default'>
+          <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
+            <div style={PRICE_STYLE}>{props.order.bidAsk[1]}</div>
+            <div>Ask</div>
+          </div>
+        </div>
         </div>
       </div>
       <FormGroup title='Currency'>
