@@ -38,16 +38,19 @@ export const amountBlurred = () => ({
   type: AMOUNT_BLURRED
 })
 
+const parseAmount = number =>
+  Number.parseFloat(number.replace(',', ''))
+
 const formatAmount = number =>
-  Number
-    .parseFloat(number.replace(',', ''))
+  parseAmount(number)
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
 const INITIAL_STATE =  {
   baseCurrency: 'EUR',
   quoteCurrency: 'GBP',
-  amount: formatAmount('1000'),
+  amount: 1000,
+  amountFormatted: formatAmount('1000'),
   bidAsk: getBidAsk('EUR', 'GBP'),
   orderType: ORDER_TYPE.MARKET
 }
@@ -59,13 +62,16 @@ const order = (state = INITIAL_STATE, action) => {
       state = merge(state, { bidAsk: getBidAsk(state.baseCurrency, state.quoteCurrency )})
       break
     case CHANGE_AMOUNT:
-      state = merge(state, { amount: action.amount })
+      state = merge(state, { amountFormatted: action.amount })
       break
     case CHANGE_ORDER_TYPE:
       state = merge(state, { orderType: action.orderType })
       break
     case AMOUNT_BLURRED:
-      state = merge(state, { amount: formatAmount(state.amount) })
+      state = merge(state, {
+        amount: parseAmount(state.amountFormatted),
+        amountFormatted: formatAmount(state.amountFormatted)
+      })
       break
   }
   if (action.type !== CHANGE_AMOUNT) {

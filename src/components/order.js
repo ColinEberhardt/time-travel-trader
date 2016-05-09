@@ -59,7 +59,7 @@ const PRICE_STYLE = {
 const Order = props =>
   <div className='panel panel-info'>
     <div className='panel-heading'>FX Order Ticket</div>
-    <form className='form-horizontal panel-body'>
+    <div className='form-horizontal panel-body'>
       <div className='row'>
         <div className='col-sm-6'>
           <div className='panel panel-default'>
@@ -70,12 +70,12 @@ const Order = props =>
           </div>
         </div>
         <div className='col-sm-6'>
-        <div className='panel panel-default'>
-          <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
-            <div style={PRICE_STYLE}>{props.order.bidAsk[1]}</div>
-            <div>Ask</div>
+          <div className='panel panel-default'>
+            <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
+              <div style={PRICE_STYLE}>{props.order.bidAsk[1]}</div>
+              <div>Ask</div>
+            </div>
           </div>
-        </div>
         </div>
       </div>
       <FormGroup title='Currency'>
@@ -95,7 +95,7 @@ const Order = props =>
           changed={props.orderTypeChanged} />
       </FormGroup>
       <FormGroup title='Amount'>
-        <input className='form-control' value={props.order.amount}
+        <input className='form-control' value={props.order.amountFormatted}
           onChange={props.amountUpdated} onBlur={props.amountBlurred} />
       </FormGroup>
       {props.order.errors.length ? <Errors errors={props.order.errors}/> : ''}
@@ -103,7 +103,7 @@ const Order = props =>
         <div className='col-sm-6'><button type='button' className='btn btn-primary btn-danger btn-lg btn-block'>SELL</button></div>
         <div className='col-sm-6'><button type='button' className='btn btn-primary btn-success btn-lg btn-block'>BUY</button></div>
       </div>
-    </form>
+    </div>
   </div>
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
