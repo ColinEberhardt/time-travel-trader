@@ -2,6 +2,16 @@ import * as login from '../reducers/login'
 import * as lifecycle from '../reducers/lifecycle'
 import * as initialisation from '../reducers/initialisation'
 
+const statusMessage = progress => {
+  if (progress < 40) {
+    return 'Loading client configuration'
+  } else if (progress < 70) {
+    return 'Loading instrument database'
+  } else {
+    return 'Opening streaming connection'
+  }
+}
+
 const initialisationMiddleware = ({ getState, dispatch }) =>
  (next) =>
     (action) => {
@@ -18,7 +28,7 @@ const initialisationMiddleware = ({ getState, dispatch }) =>
             dispatch(lifecycle.transition(lifecycle.STATE.ORDER_ENTRY))
             clearInterval(interval)
           } else {
-            dispatch(initialisation.progressUpdate(progress))
+            dispatch(initialisation.progressUpdate(progress, statusMessage(progress)))
           }
         }, 1000)
       }

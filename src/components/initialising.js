@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = state => {
   return {
-    progress: state.initialisation.progress
+    initialisation: state.initialisation
   }
 }
 
@@ -12,7 +12,7 @@ const Initialising = props =>
     <h2>Loading ...</h2>
     <div className='progress'>
       <div className='progress-bar progress-bar-info progress-bar-striped'
-            style={{'width': `${props.progress}%`}}/>
+            style={{'width': `${props.initialisation.progress}%`}}/>
     </div>
   </div>
 
