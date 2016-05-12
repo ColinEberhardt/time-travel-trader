@@ -1,7 +1,7 @@
 {
-  "name": "react-hot-boilerplate",
+  "name": "time-travel-trader",
   "version": "1.0.0",
-  "description": "Boilerplate for ReactJS project with hot code reloading",
+  "description": "An app that demonstrates the use of Hot Module Reload and Time Travel within the context of a trading platform",
   "scripts": {
     "start": "node server.js",
     "build": "webpack",
@@ -9,27 +9,7 @@
     "electron": "electron electron-launcher.js",
     "remotedev": "remotedev --hostname=localhost --port=8000 --realtime=true"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gaearon/react-hot-boilerplate.git"
-  },
-  "keywords": [
-    "react",
-    "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
-    "webpack"
-  ],
-  "author": "Dan Abramov <dan.abramov@me.com> (http://github.com/gaearon)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gaearon/react-hot-boilerplate/issues"
-  },
-  "homepage": "https://github.com/gaearon/react-hot-boilerplate",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",
