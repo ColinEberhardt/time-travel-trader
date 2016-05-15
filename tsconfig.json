@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "outDir": "ts-output",
+    "jsx": "react",
+    "noImplicitAny": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "filesGlob": [
+    "./src/**/*.tsx",
+    "./src/**/*.ts",
+    "./typings/main.d.ts"
+  ],
+  "files": [
+    "./src/component/app.tsx",
+    "./src/component/currency-selector.tsx",
+    "./src/component/errors.tsx",
+    "./src/component/form-group.tsx",
+    "./src/component/initialisation.tsx",
+    "./src/component/input-field.tsx",
+    "./src/component/login.tsx",
+    "./src/component/order.tsx",
+    "./src/index.tsx",
+    "./src/root.tsx",
+    "./src/component/is-selected.ts",
+    "./src/store/middleware/initialisation.ts",
+    "./src/store/middleware/login.ts",
+    "./src/store/reducer.ts",
+    "./src/store/reducer/get-bid-ask.ts",
+    "./src/store/reducer/initialisation.ts",
+    "./src/store/reducer/lifecycle.ts",
+    "./src/store/reducer/login.ts",
+    "./src/store/reducer/merge.ts",
+    "./src/store/reducer/order-validation.ts",
+    "./src/store/reducer/order.ts",
+    "./src/typings/remote-redux-devtools/index.d.ts",
+    "./typings/main.d.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}

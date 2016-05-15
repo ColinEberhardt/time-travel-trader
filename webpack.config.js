@@ -9,6 +9,9 @@ module.exports = {
     'webpack/hot/only-dev-server',
     './src/index'
   ],
+  resolve: {
+    extensions: ['', '.js', '.ts', '.tsx']
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -23,16 +26,9 @@ module.exports = {
   ],
   module: {
     loaders: [{
-      test: /\.js$/,
-      loaders: ['react-hot', 'babel'],
+      test: /\.ts(x?)$/,
+      loaders: ['react-hot', 'ts-loader'],
       include: path.join(__dirname, 'src')
-    }],
-    preLoaders: [
-      {
-        test: /\.js?$/,
-        loaders: ['eslint'],
-        include: path.join(__dirname, 'src')
-      }
-    ]
+    }]
   }
 }
