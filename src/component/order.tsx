@@ -1,51 +1,27 @@
 /* tslint:disable */
 import * as React from 'react'
 /* tslint:enable */
-import { Dispatch } from 'redux'
-import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 
 import Errors from './errors'
 import CurrencySelector from './currency-selector'
 import FormGroup from './form-group'
 // import OrderTypeSelector from './order-type-selector'
 import * as OrderReducer from '../store/reducer/order'
-import * as Reducer from '../store/reducer'
 
 interface StateProperties {
   order: OrderReducer.State
 }
 
-interface DispatchProperties {
+export interface DispatchProperties {
   amountUpdated: Function
   currencyChanged: Function
   orderTypeChanged: Function
   amountBlurred: Function
+  close: Function
 }
 
 type Properties = StateProperties & DispatchProperties
 
-
-const mapStateToProps: MapStateToProps<StateProperties, {}> = (state: Reducer.State) => {
-  return { order: state.order }
-}
-
-const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProperties, {}> = (dispatch: Dispatch) => {
-  return {
-    amountUpdated(event: KeyboardEvent) {
-      const target = event.target as HTMLInputElement
-      dispatch(OrderReducer.changeAmount(target.value))
-    },
-    currencyChanged(currency: string, side: OrderReducer.Side) {
-      dispatch(OrderReducer.changeCurrency(currency, side))
-    },
-    orderTypeChanged(orderType: OrderReducer.OrderType) {
-      dispatch(OrderReducer.changeOrderType(orderType))
-    },
-    amountBlurred() {
-      dispatch(OrderReducer.amountBlurred())
-    }
-  }
-}
 
 const PRICE_CONTAINER_STYLE = {
   textAlign: 'center'
@@ -68,9 +44,17 @@ const PRICE_STYLE = {
 //     </div>
 //   </div>
 
-const Order = (props: Properties) =>
-  <div className='panel panel-info'>
-    <div className='panel-heading'>FX Order Ticket</div>
+const TICKET_STYLE = {
+  width: '300px',
+  display: 'inline-block',
+  margin: '10px'
+}
+
+export const Order = (props: Properties) =>
+  <div className='panel panel-info' style={TICKET_STYLE}>
+    <div className='panel-heading'>FX Order Ticket
+      <button type='button' className='close' onClick={props.close}><span>&times;</span></button>
+    </div>
     <div className='form-horizontal panel-body'>
       <div className='row'>
         <div className='col-sm-6'>
@@ -108,10 +92,12 @@ const Order = (props: Properties) =>
       </FormGroup>
       {props.order.errors.length ? <Errors errors={props.order.errors}/> : ''}
       <div>
-        <div className='col-sm-6'><button type='button' className='btn btn-primary btn-danger btn-lg btn-block'>SELL</button></div>
-        <div className='col-sm-6'><button type='button' className='btn btn-primary btn-success btn-lg btn-block'>BUY</button></div>
+        <div className='col-sm-6'>
+          <button type='button' className='btn btn-primary btn-danger btn-lg btn-block'>SELL</button>
+        </div>
+        <div className='col-sm-6'>
+          <button type='button' className='btn btn-primary btn-success btn-lg btn-block'>BUY</button>
+        </div>
       </div>
     </div>
   </div>
-
-export default connect(mapStateToProps, mapDispatchToProps)(Order)

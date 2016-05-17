@@ -23,6 +23,7 @@
     "./src/component/input-field.tsx",
     "./src/component/login.tsx",
     "./src/component/order.tsx",
+    "./src/component/orders.tsx",
     "./src/index.tsx",
     "./src/root.tsx",
     "./src/component/is-selected.ts",
@@ -36,6 +37,7 @@
     "./src/store/reducer/merge.ts",
     "./src/store/reducer/order-validation.ts",
     "./src/store/reducer/order.ts",
+    "./src/store/reducer/orders.ts",
     "./src/typings/remote-redux-devtools/index.d.ts",
     "./typings/main.d.ts"
   ],

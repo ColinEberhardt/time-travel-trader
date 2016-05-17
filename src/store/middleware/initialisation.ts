@@ -20,12 +20,12 @@ const initialisationMiddleware: Redux.Middleware = ({ dispatch }) =>
       const nextMiddleware = next(action)
 
       if (action.type === LifecycleReducer.LIFECYCLE_TRANSITION &&
-        action.state === LifecycleReducer.Lifecycle.Initialising) {
+        action.state === LifecycleReducer.State.Initialising) {
         let progress = 0
         const interval = setInterval(() =>  {
           progress += 20
           if (progress > 100) {
-            dispatch(LifecycleReducer.transition(LifecycleReducer.Lifecycle.OrderEntry))
+            dispatch(LifecycleReducer.transition(LifecycleReducer.State.OrderEntry))
             clearInterval(interval)
           } else {
             dispatch(initialisation.progressUpdate(progress, statusMessage(progress)))

@@ -17,7 +17,7 @@ const loginMiddleware: Redux.Middleware = ({ getState, dispatch }) =>
       if (action.type === LoginReducer.LOGIN) {
         setTimeout(() => {
             if (state.login.username === 'Colin' && state.login.password === 'Password') {
-              dispatch(LifecycleReducer.transition(LifecycleReducer.Lifecycle.Initialising))
+              dispatch(LifecycleReducer.transition(LifecycleReducer.State.Initialising))
             } else {
               dispatch(LoginReducer.loginFailed('login failed, please try again'))
             }

@@ -5,12 +5,12 @@ import { connect, MapStateToProps } from 'react-redux'
 
 import Login from './login'
 import Initialisation from './initialisation'
-import Order from './order'
+import Orders from './orders'
 import * as LifecycleReducer from '../store/reducer/lifecycle'
 import * as Reducer from '../store/reducer'
 
 interface StateProperties {
-  lifecycle: LifecycleReducer.Lifecycle
+  lifecycle: LifecycleReducer.State
 }
 
 interface DispatchProperties {}
@@ -21,20 +21,15 @@ const mapStateToProps: MapStateToProps<StateProperties, {}> = (state: Reducer.St
   lifecycle: state.lifecycle
 })
 
-const componentForLifecycle = (state: LifecycleReducer.Lifecycle) => {
+const componentForLifecycle = (state: LifecycleReducer.State) => {
   switch (state) {
-    case LifecycleReducer.Lifecycle.Login:
+    case LifecycleReducer.State.Login:
       return <Login/>
-    case LifecycleReducer.Lifecycle.Initialising:
+    case LifecycleReducer.State.Initialising:
       return <Initialisation/>
-    case LifecycleReducer.Lifecycle.OrderEntry:
-      return <Order/>
+    case LifecycleReducer.State.OrderEntry:
+      return <Orders/>
   }
-}
-
-const CENTRED_STYLE = {
-  marginLeft: 'auto',
-  marginRight: 'auto'
 }
 
 const CONTAINER_OFFSET_STYLE = {
@@ -50,7 +45,7 @@ const App = (props: Properties) =>
         </div>
       </div>
     </nav>
-    <div style={Object.assign({width: 500}, CONTAINER_OFFSET_STYLE, CENTRED_STYLE)}>
+    <div style={CONTAINER_OFFSET_STYLE}>
       {componentForLifecycle(props.lifecycle)}
     </div>
   </div>

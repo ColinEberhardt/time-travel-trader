@@ -35,7 +35,7 @@ export interface State {
   quoteCurrency: string
   amount: number
   amountFormatted: string
-  bidAsk: number[],
+  bidAsk: string[],
   orderType: OrderType,
   errors: string[]
 }
@@ -72,20 +72,20 @@ const formatAmount = (amount: string) =>
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-const INITIAL_STATE: State =  {
-  baseCurrency: 'EUR',
-  quoteCurrency: 'GBP',
+export const createOrder = (cross: string): State => ({
+  baseCurrency: cross.substr(0, 3),
+  quoteCurrency: cross.substr(3),
   amount: 1000,
   amountFormatted: formatAmount('1000'),
-  bidAsk: getBidAsk('EUR', 'GBP'),
+  bidAsk: getBidAsk(cross.substr(0, 3), cross.substr(3)),
   orderType: OrderType.Market,
   errors: []
-}
+})
 
 const propertyForSide = (side: Side) =>
   side === Side.Base ? 'baseCurrency' : 'quoteCurrency'
 
-export const reducer: Reducer = (state = INITIAL_STATE, action) => {
+export const reducer: Reducer = (state = createOrder('GBPEUR'), action) => {
   switch (action.type) {
     case CHANGE_CURRENCY:
       state = merge(state, { [propertyForSide(action.side)]:  action.currency })

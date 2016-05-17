@@ -1,4 +1,4 @@
-export enum Lifecycle {
+export enum State {
   Login,
   OrderEntry,
   Initialising
@@ -6,16 +6,16 @@ export enum Lifecycle {
 
 export interface Action {
   type: string
-  state: Lifecycle
+  state: State
 }
 
 interface Reducer extends Function {
-  (state: Lifecycle, action: Action): Lifecycle
+  (state: State, action: Action): State
 }
 
 export const LIFECYCLE_TRANSITION = 'lifecycle/LIFECYCLE_TRANSITION'
 
-export const transition = (state: Lifecycle): Action => {
+export const transition = (state: State): Action => {
   return {
     type: LIFECYCLE_TRANSITION,
     state
@@ -23,7 +23,7 @@ export const transition = (state: Lifecycle): Action => {
 }
 
 
-export const reducer: Reducer  = (state = Lifecycle.Login, action: Action) => {
+export const reducer: Reducer  = (state = State.OrderEntry, action: Action) => {
   switch (action.type) {
     case LIFECYCLE_TRANSITION:
       return action.state

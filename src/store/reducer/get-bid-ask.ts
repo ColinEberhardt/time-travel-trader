@@ -1,5 +1,5 @@
 // rates obtained from http://webrates.truefx.com/rates/connect.html?f=html
-const RATES = {
+const RATES: {[key: string]: number} = {
   'EUR/USD': 1.14,
   'USD/JPY': 106.884,
   'GBP/USD': 1.44,
@@ -12,7 +12,7 @@ const RATES = {
   'GBP/JPY': 154.820
 }
 
-const getRate = (ccyOne: string, ccyTwo: string) => {
+const getRate = (ccyOne: string, ccyTwo: string): number => {
   const key = ccyOne + '/' + ccyTwo
   if (RATES[key]) {
     return RATES[key]
@@ -24,7 +24,7 @@ const getRate = (ccyOne: string, ccyTwo: string) => {
   return NaN
 }
 
-const getBidAsk = (ccyOne: string, ccyTwo: string) => {
+const getBidAsk = (ccyOne: string, ccyTwo: string): string[] => {
   const rate = getRate(ccyOne, ccyTwo)
   const spread = rate * 0.02
   return [(rate - spread).toFixed(3), (rate + spread).toFixed(3)]
