@@ -2,6 +2,8 @@
 import * as React from 'react'
 /* tslint:enable */
 
+import * as Radium from 'radium'
+
 interface PriceTileProperties {
   price: string
   side: string
@@ -14,7 +16,10 @@ const Style = {
     padding: 5,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    ':hover': {
+      backgroundColor: 'lightgray'
+    },
   },
   price: {
     fontWeight: 'normal',
@@ -52,4 +57,4 @@ const PriceTile = (props: PriceTileProperties) =>
     <button type='button' style={Style.tradeButton}>{props.side}</button>
   </div>
 
-export default PriceTile
+export default Radium(PriceTile)

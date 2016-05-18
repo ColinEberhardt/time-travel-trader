@@ -35,6 +35,7 @@
     "./src/store/reducer/order-validation.ts",
     "./src/store/reducer/order.ts",
     "./src/store/reducer/orders.ts",
+    "./src/typings/radium/index.d.ts",
     "./src/typings/remote-redux-devtools/index.d.ts",
     "./typings/main.d.ts"
   ],
