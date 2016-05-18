@@ -23,7 +23,6 @@ const store = createStore(reducer, compose(
   )
 )
 
-
 // Enable HMR of reducers
 // TODO: Find a better way of doing this with TypeScript!
 declare const module: any
@@ -43,9 +42,7 @@ export default class Root extends React.Component<{}, {}> {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <App />
-        </div>
+        <App />
       </Provider>
     )
   }

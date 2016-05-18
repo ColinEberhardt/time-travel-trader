@@ -4,7 +4,7 @@ import * as React from 'react'
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 import { Dispatch } from 'redux'
 
-import { bindIndexToActionCreator, State, closeTicket, addTicket } from './../store/reducer/orders'
+import { bindIndexToActionCreator, State, closeTicket } from './../store/reducer/orders'
 import { changeAmount, changeCurrency, changeOrderType, Side, OrderType, amountBlurred } from './../store/reducer/order'
 import * as Reducer from './../store/reducer'
 import { Order, DispatchProperties as OrderDispatchProperties } from './order'
@@ -15,7 +15,6 @@ interface StateProperties {
 }
 
 interface DispatchProperties {
-  addTicket: Function
 }
 
 interface ReduxProperties {
@@ -27,20 +26,6 @@ type Properties = StateProperties & DispatchProperties & ReduxProperties
 const mapStateToProps: MapStateToProps<StateProperties, {}> = (state: Reducer.State) => {
   return {
     orders: state.orders
-  }
-}
-
-const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProperties, {}> = (dispatch: Dispatch) => {
-  return {
-    addTicket(event: KeyboardEvent) {
-      if (event.charCode === 13) {
-        const target = event.target as HTMLInputElement
-        const fxCross = target.value
-        dispatch(addTicket(fxCross))
-        target.value = ''
-      }
-    },
-    dispatch
   }
 }
 
@@ -69,13 +54,8 @@ const orderDispatchProperties =
 
 const Orders = (props: Properties) =>
   <div>
-    <div>
-      <input onKeyPress={props.addTicket}></input>
-    </div>
-    <div>
-      { props.orders.map((order, index) => <Order order={order}
-          {...orderDispatchProperties(index)(props.dispatch)} />) }
-    </div>
+    { props.orders.map((order, index) => <Order order={order}
+        {...orderDispatchProperties(index)(props.dispatch)} />) }
   </div>
 
-export default connect(mapStateToProps, mapDispatchToProps)(Orders)
+export default connect(mapStateToProps)(Orders)
