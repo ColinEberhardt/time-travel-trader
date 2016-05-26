@@ -32,74 +32,82 @@ type Properties = StateProperties & DispatchProperties
 //     </div>
 //   </div>
 
-const TICKET_WIDTH = 250
+const TICKET_WIDTH = 320
+const TICKET_HEIGHT = 283
 const TICKET_PADDING = 10
+const TICKET_HEADING_HEIGHT = '52px'
 const LIGHT_GRAY = '#9c9ea2'
-const BORDER_WIDTH = 1
-const AMOUNT_CONTAINER_HEIGHT = 20
+const BORDER_WIDTH = 2
+const AMOUNT_CONTAINER_HEIGHT = 24
+const AMOUNT_FONT_SIZE = 16
 
 const Style = {
   ticket: {
     width: TICKET_WIDTH,
+    height: TICKET_HEIGHT,
+    margin: 13,
     display: 'inline-block',
-    margin: 10,
-    backgroundColor: '#0d1221'
-  },
-  title: {
-    color: '#86e2fb',
-    fontSize: 15,
-    fontWeight: 'normal',
-    textAlign: 'center'
-  },
-  closeButton: {
-    backgroundColor: 'transparent',
-    border: 'none',
-    color: LIGHT_GRAY,
-    cursor: 'pointer',
-    fontSize: 20,
-    position: 'absolute',
-    width: 20,
-    height: 20,
-    lineHeight: '15px',
-    right: 0,
-    top: 0
+    backgroundColor: '#1b222f'
   },
   priceTileContainer: {
     display: 'flex',
-    marginBottom: 10
+    marginBottom: 20
   },
   amountContainer: {
     position: 'relative',
     height: AMOUNT_CONTAINER_HEIGHT
   },
   amount: {
-    backgroundColor: '#131f37',
+    backgroundColor: 'transparent',
     border: BORDER_WIDTH + 'px solid ' + LIGHT_GRAY,
-    borderRadius: 5,
+    borderRadius: 3,
     color: LIGHT_GRAY,
-    fontSize: 11,
-    width: TICKET_WIDTH - TICKET_PADDING * 2 - BORDER_WIDTH,
+    fontSize: AMOUNT_FONT_SIZE,
+    width: 230,
     height: AMOUNT_CONTAINER_HEIGHT,
     margin: 0,
     padding: 0
   },
   amountCurrency: {
-    fontSize: 11,
+    fontSize: AMOUNT_FONT_SIZE,
     position: 'absolute',
     top: 0,
     right: 3,
     color: LIGHT_GRAY,
     height: AMOUNT_CONTAINER_HEIGHT + BORDER_WIDTH * 2 + 'px',
+    borderLeft: '2px solid ' + LIGHT_GRAY,
+    padding: '0 10px',
     lineHeight: AMOUNT_CONTAINER_HEIGHT + BORDER_WIDTH * 2 + 'px'
   },
   ticketContents: {
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     margin: 10
   },
   ticketHeading: {
-    position: 'relative'
-  }
+    position: 'relative',
+    height: TICKET_HEADING_HEIGHT
+  },
+  title: {
+    color: '#86e2fb',
+    fontSize: 24,
+    lineHeight: TICKET_HEADING_HEIGHT,
+    margin: 0,
+    fontWeight: 'normal',
+    textAlign: 'center'
+  },
+  closeButton: {
+    backgroundColor: 'transparent',
+    color: '#72767e',
+    height: TICKET_HEADING_HEIGHT,
+    cursor: 'pointer',
+    fontSize: 40,
+    position: 'absolute',
+    lineHeight: TICKET_HEADING_HEIGHT,
+    right: 10,
+    top: 0
+  },
 }
 
 export const Order = (props: Properties) =>
@@ -114,7 +122,7 @@ export const Order = (props: Properties) =>
         <PriceTile price={props.order.bidAsk[1]} side='SELL'/>
       </div>
       <div style={Style.amountContainer}>
-        <div style={Style.amountCurrency}>{props.order.baseCurrency}</div>
+      <div style={Style.amountCurrency}>{props.order.baseCurrency}</div>
         <input style={Style.amount} value={props.order.amountFormatted}
           onChange={props.amountUpdated} onBlur={props.amountBlurred} />
       </div>

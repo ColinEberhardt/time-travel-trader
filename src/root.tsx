@@ -29,7 +29,9 @@ declare const module: any
 declare const require: any
 if (module.hot) {
   module.hot.accept('./store/reducer', () => {
+    /* tslint:disable */
     const nextRootReducer = require('./store/reducer').default
+    /* tslint:enable */
     store.replaceReducer(nextRootReducer)
   })
 }

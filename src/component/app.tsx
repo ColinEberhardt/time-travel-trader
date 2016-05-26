@@ -50,12 +50,17 @@ const componentForLifecycle = (state: LifecycleReducer.State) => {
   }
 }
 
-const NAV_HEIGHT = 75
+const NAV_HEIGHT = 78
 const HEADING_FONT_SIZE = 30
+const SEARCH_FONT_SIZE = 20
+const CONTAINER_TOP_PADDING = 47
+const CONTAINER_HORIZONTAL_PADDING = 13
 
 const Style = {
   container: {
-    paddingTop: NAV_HEIGHT
+    paddingTop: NAV_HEIGHT + CONTAINER_TOP_PADDING,
+    paddingLeft: CONTAINER_HORIZONTAL_PADDING,
+    paddingRight: CONTAINER_HORIZONTAL_PADDING
   },
   headingNav: {
     display: 'flex',
@@ -63,7 +68,7 @@ const Style = {
     justifyContent: 'space-between',
     height: NAV_HEIGHT,
     position: 'fixed',
-    backgroundColor: '#010616',
+    backgroundColor: '#233d51',
     top: 0,
     left: 0,
     right: 0
@@ -75,11 +80,13 @@ const Style = {
     fontWeight: 'normal'
   },
   search: {
-    marginRight: 10,
-    fontSize: HEADING_FONT_SIZE,
+    marginRight: 20,
+    fontSize: SEARCH_FONT_SIZE,
     backgroundColor: 'transparent',
-    borderRadius: 5,
-    color: '#9c9ea2'
+    borderWidth: 3,
+    color: 'white',
+    borderColor: '#919ea8',
+    width: 242
   }
 }
 
@@ -87,7 +94,7 @@ const App = (props: Properties) =>
   <div>
     <nav style={Style.headingNav}>
       <h2 style={Style.headingTitle}>Time Travel Trader</h2>
-      <input style={Style.search} onKeyPress={props.addTicket}></input>
+      <input style={Style.search} onKeyPress={props.addTicket} placeholder='search'></input>
     </nav>
     <div style={Style.container}>
       {componentForLifecycle(props.lifecycle)}

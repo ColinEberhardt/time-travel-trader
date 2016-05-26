@@ -72,7 +72,6 @@
       "avoid-escape"
     ],
     "radix": true,
-    "semicolon": [true, "never"],
     "switch-default": false,
     "trailing-comma": false,
     "triple-equals": [

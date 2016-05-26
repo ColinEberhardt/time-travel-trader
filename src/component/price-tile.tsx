@@ -13,30 +13,43 @@ const Style = {
   priceTile: {
     textAlign: 'center',
     flex: 1,
-    padding: 5,
+    width: 145,
+    height: 150,
     display: 'flex',
+    cursor: 'pointer',
     flexDirection: 'column',
     alignItems: 'center',
     ':hover': {
-      backgroundColor: 'lightgray'
+      backgroundColor: '#233d51'
     },
   },
   price: {
-    fontWeight: 'normal',
+    fontSize: 20
+  },
+  directionIndicator: {
+    position: 'relative',
+    left: '-10px',
+    width: 16,
+    height: 16
+  },
+  trailingPrice: {
     fontSize: 20,
-    color: '#5a5b61'
+    position: 'relative',
+    left: 2,
+    top: '-25px'
   },
   pips: {
-    fontSize: 50
+    fontSize: 85,
+    lineHeight: '80px'
   },
-  tradeButton: {
-    width: 40,
-    backgroundColor: '#131f37',
-    border: '1px solid #86e2fb',
-    borderRadius: 5,
-    color: 'white'
+  side: {
+    fontSize: 22
   }
 }
+
+const downPath = <path d='M0 0 h 16 l -8 16 z' fill='#ff5460'/>
+
+const upPath = <path d='M0 16 h 16 l -8 -16 z' fill='#41dc65'/>
 
 const leadingPrice = (price: string) =>
   price.substr(0, price.length - 3)
@@ -49,12 +62,15 @@ const pipsPrice = (price: string) =>
 
 const PriceTile = (props: PriceTileProperties) =>
   <div style={Style.priceTile}>
+    <div style={Style.price}>{leadingPrice(props.price)}</div>
     <div>
-      <span style={Style.price}>{leadingPrice(props.price)}</span>
       <span style={Style.pips}>{pipsPrice(props.price)}</span>
-      <span style={Style.price}>{trailingPrice(props.price)}</span>
+      <span style={Style.trailingPrice}>{trailingPrice(props.price)}</span>
+      <svg style={Style.directionIndicator}>
+        {Math.random() > 0.5 ? upPath : downPath}
+      </svg>
     </div>
-    <button type='button' style={Style.tradeButton}>{props.side}</button>
+    <div style={Style.side}>{props.side}</div>
   </div>
 
 export default Radium(PriceTile)
