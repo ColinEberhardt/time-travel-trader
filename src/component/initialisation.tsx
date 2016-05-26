@@ -18,12 +18,23 @@ const mapStateToProps: MapStateToProps<StateProperties, {}> = (state: Reducer.St
   initialisation: state.initialisation
 })
 
+const Style = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingTop: 60
+  }
+}
+
 const Initialising = (props: Properties) =>
-  <div>
+  <div style={Style.container}>
     <h2>Loading ...</h2>
-    <div className='progress'>
-      <div className='progress-bar progress-bar-info progress-bar-striped'
-            style={{'width': `${props.initialisation.progress}%`}}/>
+    <div>
+      {props.initialisation.progress}%
+    </div>
+    <div>
+      {props.initialisation.message}
     </div>
   </div>
 

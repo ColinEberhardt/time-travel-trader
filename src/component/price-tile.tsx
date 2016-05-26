@@ -67,7 +67,7 @@ const PriceTile = (props: PriceTileProperties) =>
       <span style={Style.pips}>{pipsPrice(props.price)}</span>
       <span style={Style.trailingPrice}>{trailingPrice(props.price)}</span>
       <svg style={Style.directionIndicator}>
-        {Math.random() > 0.5 ? upPath : downPath}
+        {(Number(props.price) * 1000)  % 2 === 0 ? upPath : downPath}
       </svg>
     </div>
     <div style={Style.side}>{props.side}</div>

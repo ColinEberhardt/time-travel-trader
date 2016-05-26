@@ -3,10 +3,10 @@ import * as React from 'react'
 /* tslint:enable */
 import { Dispatch } from 'redux'
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
+import * as Radium from 'radium'
 
 import * as LoginReducer from './../store/reducer/login'
 import * as Reducer from './../store/reducer'
-import InputField from './input-field'
 
 interface StateProperties {
   state: LoginReducer.State,
@@ -45,20 +45,64 @@ const mapDispatchToProps: MapDispatchToPropsFunction<DispatchProperties, {}> = (
   }
 }
 
-const Login = (props: Properties) =>
-  <div className='panel panel-info'>
-    <div className='panel-heading'>Client Login</div>
-    <form className='panel-body'>
-      <InputField title='Username' value={props.state.username}
-        onChange={props.usernameChanged} isValid={props.state.usernameValid}
-        disabled={props.state.loginInProgress}/>
-      <InputField title='Password' value={props.state.password}
-        onChange={props.passwordChanged} isValid={props.state.passwordValid}
-        disabled={props.state.loginInProgress}/>
-      <button type='submit' className='btn btn-default' onClick={props.login}
-        disabled={!props.state.loginEnabled || props.state.loginInProgress}>login</button>
+const INPUT_WIDTH = 350
+
+const Style = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: 60
+  },
+  input: {
+    fontSize: 30,
+    display: 'block',
+    border: 0,
+    width: INPUT_WIDTH,
+    padding: '5px 0'
+  },
+  inputContainer: {
+    backgroundColor: 'white',
+    padding: 10
+  },
+  underline: {
+    borderBottom: '1px solid  #010616'
+  },
+  button: {
+    width: '100%',
+    margin: 0,
+    fontSize: 30,
+    backgroundColor: '#86e2fb',
+    color: '#010616',
+    border: 0,
+    padding: 5,
+    marginTop: 30,
+    ':hover': {
+      backgroundColor: '#96f2fb'
+    }
+  },
+  disabledButton: {
+    backgroundColor: '#919ea8'
+  }
+}
+
+const Login = (props: Properties) => {
+  const disabled = !props.state.loginEnabled || props.state.loginInProgress;
+  return <div style={Style.container}>
+    <form>
+      <div style={Style.inputContainer}>
+        <input style={[Style.input, Style.underline]} value={props.state.username}
+          onChange={props.usernameChanged} disabled={props.state.loginInProgress}
+          placeholder='username'></input>
+        <input style={Style.input} value={props.state.password}
+          onChange={props.passwordChanged} disabled={props.state.loginInProgress}
+          placeholder='password'></input>
+      </div>
+      <button type='submit'
+        style={disabled ? [Style.button, Style.disabledButton] : Style.button}
+        onClick={props.login}
+        disabled={disabled}>login</button>
       <p style={{display: 'inline', marginLeft: 10}}>{props.state.failureMessage}</p>
     </form>
   </div>
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(Login))

@@ -19,19 +19,6 @@ export interface DispatchProperties {
 
 type Properties = StateProperties & DispatchProperties
 
-
-// <Price price={props.order.bidAsk[0]} side='Bid'/>
-
-// <Price price={props.order.bidAsk[0]} side='Bid'/>
-
-// const Price = props =>
-//   <div className='panel panel-default'>
-//     <div className='panel-body' style={PRICE_CONTAINER_STYLE}>
-//       <div style={PRICE_STYLE}>{props.price}</div>
-//       <div>{props.side}</div>
-//     </div>
-//   </div>
-
 const TICKET_WIDTH = 320
 const TICKET_HEIGHT = 283
 const TICKET_PADDING = 10

@@ -65,7 +65,7 @@ export const amountBlurred: ActionCreator = () => ({
 })
 
 const parseAmount = (amount: string) =>
-  Number.parseFloat(amount.replace(',', ''))
+  Number.parseFloat(amount.replace(/,/g, ''))
 
 const formatAmount = (amount: string) =>
   parseAmount(amount)

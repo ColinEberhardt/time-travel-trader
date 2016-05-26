@@ -23,7 +23,7 @@ export const transition = (state: State): Action => {
 }
 
 
-export const reducer: Reducer  = (state = State.OrderEntry, action: Action) => {
+export const reducer: Reducer  = (state = State.Login, action: Action) => {
   switch (action.type) {
     case LIFECYCLE_TRANSITION:
       return action.state

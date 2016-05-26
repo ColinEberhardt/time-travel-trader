@@ -71,7 +71,10 @@ const Style = {
     backgroundColor: '#233d51',
     top: 0,
     left: 0,
-    right: 0
+    right: 0,
+    paddingLeft: 60,
+    backgroundImage: 'url(logo.png)',
+    backgroundRepeat: 'no-repeat'
   },
   headingTitle: {
     margin: 0,
