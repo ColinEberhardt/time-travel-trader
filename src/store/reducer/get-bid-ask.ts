@@ -26,8 +26,12 @@ const getRate = (ccyOne: string, ccyTwo: string): number => {
 
 const getBidAsk = (ccyOne: string, ccyTwo: string): string[] => {
   const rate = getRate(ccyOne, ccyTwo)
-  const spread = rate * 0.02
-  return [(rate - spread).toFixed(3), (rate + spread).toFixed(3)]
+  if (rate) {
+    const spread = rate * 0.02
+    return [(rate - spread).toFixed(3), (rate + spread).toFixed(3)]
+  } else {
+    return undefined
+  }
 }
 
 export default getBidAsk

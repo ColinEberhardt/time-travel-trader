@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import * as OrderReducer from '../store/reducer/order'
 import PriceTile from './price-tile'
+import ErrorPanel from './error-panel'
 
 interface StateProperties {
   order: OrderReducer.State
@@ -20,9 +21,7 @@ export interface DispatchProperties {
 type Properties = StateProperties & DispatchProperties
 
 const TICKET_WIDTH = 320
-const TICKET_HEIGHT = 283
-const TICKET_PADDING = 10
-const TICKET_HEADING_HEIGHT = '52px'
+const TICKET_HEADING_HEIGHT = 52
 const LIGHT_GRAY = '#9c9ea2'
 const BORDER_WIDTH = 2
 const AMOUNT_CONTAINER_HEIGHT = 24
@@ -31,7 +30,6 @@ const AMOUNT_FONT_SIZE = 16
 const Style = {
   ticket: {
     width: TICKET_WIDTH,
-    height: TICKET_HEIGHT,
     margin: 13,
     display: 'inline-block',
     backgroundColor: '#1b222f'
@@ -42,7 +40,8 @@ const Style = {
   },
   amountContainer: {
     position: 'relative',
-    height: AMOUNT_CONTAINER_HEIGHT
+    height: AMOUNT_CONTAINER_HEIGHT,
+    marginBottom: 20
   },
   amount: {
     backgroundColor: 'transparent',
@@ -53,12 +52,15 @@ const Style = {
     width: 230,
     height: AMOUNT_CONTAINER_HEIGHT,
     margin: 0,
-    padding: 0
+    paddingLeft: 5
+  },
+  errorBorder: {
+    borderColor: 'red'
   },
   amountCurrency: {
     fontSize: AMOUNT_FONT_SIZE,
     position: 'absolute',
-    top: 0,
+    top: 1,
     right: 3,
     color: LIGHT_GRAY,
     height: AMOUNT_CONTAINER_HEIGHT + BORDER_WIDTH * 2 + 'px',
@@ -79,7 +81,7 @@ const Style = {
   title: {
     color: '#86e2fb',
     fontSize: 24,
-    lineHeight: TICKET_HEADING_HEIGHT,
+    lineHeight: TICKET_HEADING_HEIGHT + 'px',
     margin: 0,
     fontWeight: 'normal',
     textAlign: 'center'
@@ -91,7 +93,7 @@ const Style = {
     cursor: 'pointer',
     fontSize: 40,
     position: 'absolute',
-    lineHeight: TICKET_HEADING_HEIGHT,
+    lineHeight: TICKET_HEADING_HEIGHT - 10 + 'px',
     right: 10,
     top: 0
   },
@@ -113,5 +115,6 @@ export const Order = (props: Properties) =>
         <input style={Style.amount} value={props.order.amountFormatted}
           onChange={props.amountUpdated} onBlur={props.amountBlurred} />
       </div>
+      <ErrorPanel errors={props.order.errors}/>
     </div>
   </div>

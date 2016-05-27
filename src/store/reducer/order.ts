@@ -72,15 +72,20 @@ const formatAmount = (amount: string) =>
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 
-export const createOrder = (cross: string): State => ({
-  baseCurrency: cross.substr(0, 3),
-  quoteCurrency: cross.substr(3),
-  amount: 1000,
-  amountFormatted: formatAmount('1000'),
-  bidAsk: getBidAsk(cross.substr(0, 3), cross.substr(3)),
-  orderType: OrderType.Market,
-  errors: []
-})
+export const createOrder = (cross: string): State => {
+  const baseCurrency = cross.substr(0, 3);
+  const quoteCurrency = cross.substr(3);
+  const bidAsk = getBidAsk(baseCurrency, quoteCurrency);
+  return bidAsk ? {
+    baseCurrency,
+    quoteCurrency,
+    bidAsk,
+    amount: 1000,
+    amountFormatted: formatAmount('1000'),
+    orderType: OrderType.Market,
+    errors: []
+  } : undefined
+}
 
 const propertyForSide = (side: Side) =>
   side === Side.Base ? 'baseCurrency' : 'quoteCurrency'

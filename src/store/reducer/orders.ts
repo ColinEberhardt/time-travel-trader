@@ -57,10 +57,13 @@ export const reducer: Reducer = (state = INITIAL_STATE, action) => {
       ]
       break
     case ADD_TICKET:
-      state = [
-        OrderReducer.createOrder(action.cross),
-        ...state
-      ]
+      const order = OrderReducer.createOrder(action.cross);
+      if (order) {
+        state = [
+          order,
+          ...state
+        ]
+      }
       break
   }
   return state

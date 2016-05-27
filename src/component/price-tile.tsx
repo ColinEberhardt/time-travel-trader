@@ -4,7 +4,7 @@ import * as React from 'react'
 
 import * as Radium from 'radium'
 
-interface PriceTileProperties {
+interface Properties {
   price: string
   side: string
 }
@@ -60,7 +60,7 @@ const trailingPrice = (price: string) =>
 const pipsPrice = (price: string) =>
   price.substr(price.length - 3, 2)
 
-const PriceTile = (props: PriceTileProperties) =>
+const PriceTile = (props: Properties) =>
   <div style={Style.priceTile}>
     <div style={Style.price}>{leadingPrice(props.price)}</div>
     <div>

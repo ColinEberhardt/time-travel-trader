@@ -89,7 +89,8 @@ const Style = {
     borderWidth: 3,
     color: 'white',
     borderColor: '#919ea8',
-    width: 242
+    width: 242,
+    paddingLeft: 5
   }
 }
 
