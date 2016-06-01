@@ -5,6 +5,7 @@ import { Dispatch } from 'redux'
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 import * as Radium from 'radium'
 
+import Constants from './constants'
 import * as LoginReducer from './../store/reducer/login'
 import * as Reducer from './../store/reducer'
 
@@ -57,31 +58,37 @@ const Style = {
     fontSize: 30,
     display: 'block',
     border: 0,
+    borderLeftColor: 'white',
+    borderLeftWidth: 10,
+    borderLeftStyle: 'solid',
     width: INPUT_WIDTH,
-    padding: '5px 0'
-  },
-  inputContainer: {
-    backgroundColor: 'white',
-    padding: 10
+    padding: 10,
+    backgroundColor: 'white'
   },
   underline: {
-    borderBottom: '1px solid  #010616'
+    marginBottom: 1
+  },
+  invalid: {
+    borderLeftColor: Constants.color.red
   },
   button: {
     width: '100%',
     margin: 0,
     fontSize: 30,
-    backgroundColor: '#86e2fb',
-    color: '#010616',
+    backgroundColor: Constants.color.neonBlue,
+    color: Constants.color.background,
     border: 0,
     padding: 5,
     marginTop: 30,
     ':hover': {
-      backgroundColor: '#96f2fb'
+      backgroundColor: Constants.color.highlightNeonBlue
     }
   },
   disabledButton: {
-    backgroundColor: '#919ea8'
+    backgroundColor: Constants.color.lightGray,
+    ':hover': {
+      backgroundColor: Constants.color.lightGray
+    }
   }
 }
 
@@ -89,18 +96,34 @@ const Login = (props: Properties) => {
   const disabled = !props.state.loginEnabled || props.state.loginInProgress;
   return <div style={Style.container}>
     <form>
-      <div style={Style.inputContainer}>
-        <input style={[Style.input, Style.underline]} value={props.state.username}
-          onChange={props.usernameChanged} disabled={props.state.loginInProgress}
-          placeholder='username'></input>
-        <input style={Style.input} value={props.state.password}
-          onChange={props.passwordChanged} disabled={props.state.loginInProgress}
-          placeholder='password'></input>
-      </div>
+      <input
+        style={[
+          Style.input,
+          props.state.usernameValid ? {} : Style.invalid,
+          Style.underline
+        ]}
+        value={props.state.username}
+        onChange={props.usernameChanged}
+        disabled={props.state.loginInProgress}
+        placeholder='username'>
+      </input>
+      <input
+        style={[
+          Style.input,
+          props.state.passwordValid ? {} : Style.invalid
+        ]}
+        value={props.state.password}
+        onChange={props.passwordChanged}
+        disabled={props.state.loginInProgress}
+        isValid={props.state.passwordValid}
+        placeholder='password'>
+      </input>
       <button type='submit'
         style={disabled ? [Style.button, Style.disabledButton] : Style.button}
         onClick={props.login}
-        disabled={disabled}>login</button>
+        disabled={disabled}>
+        login
+      </button>
       <p style={{display: 'inline', marginLeft: 10}}>{props.state.failureMessage}</p>
     </form>
   </div>

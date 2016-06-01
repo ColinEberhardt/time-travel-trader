@@ -4,6 +4,7 @@ import * as React from 'react'
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 import { Dispatch } from 'redux'
 
+import Constants from './constants'
 import Login from './login'
 import Initialisation from './initialisation'
 import Orders from './orders'
@@ -68,7 +69,7 @@ const Style = {
     justifyContent: 'space-between',
     height: NAV_HEIGHT,
     position: 'fixed',
-    backgroundColor: '#233d51',
+    backgroundColor: Constants.color.background,
     top: 0,
     left: 0,
     right: 0,
@@ -88,7 +89,7 @@ const Style = {
     backgroundColor: 'transparent',
     borderWidth: 3,
     color: 'white',
-    borderColor: '#919ea8',
+    borderColor: Constants.color.lightGray,
     width: 242,
     paddingLeft: 5
   }

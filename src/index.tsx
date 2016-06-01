@@ -4,5 +4,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import Root from './root'
+import { StyleRoot } from 'radium';
 
-ReactDOM.render(<Root/>, document.getElementById('root'))
+ReactDOM.render(<StyleRoot><Root/></StyleRoot>, document.getElementById('root'))

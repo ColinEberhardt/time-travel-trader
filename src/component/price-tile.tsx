@@ -4,6 +4,8 @@ import * as React from 'react'
 
 import * as Radium from 'radium'
 
+import Constants from './constants'
+
 interface Properties {
   price: string
   side: string
@@ -47,9 +49,9 @@ const Style = {
   }
 }
 
-const downPath = <path d='M0 0 h 16 l -8 16 z' fill='#ff5460'/>
+const downPath = <path d='M0 0 h 16 l -8 16 z' fill={Constants.color.red}/>
 
-const upPath = <path d='M0 16 h 16 l -8 -16 z' fill='#41dc65'/>
+const upPath = <path d='M0 16 h 16 l -8 -16 z' fill={Constants.color.green}/>
 
 const leadingPrice = (price: string) =>
   price.substr(0, price.length - 3)

@@ -1,7 +1,9 @@
 declare module 'radium' {
     function Radium(arg: any): any
 
-    namespace Radium {}
+    namespace Radium {
+        const keyframes: any
+    }
 
     export = Radium
 }

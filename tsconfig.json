@@ -16,6 +16,7 @@
   ],
   "files": [
     "./src/component/app.tsx",
+    "./src/component/constants.tsx",
     "./src/component/error-panel.tsx",
     "./src/component/initialisation.tsx",
     "./src/component/login.tsx",

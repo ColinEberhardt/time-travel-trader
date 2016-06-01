@@ -2,6 +2,7 @@
 import * as React from 'react'
 /* tslint:enable */
 
+import Constants from './constants'
 import * as OrderReducer from '../store/reducer/order'
 import PriceTile from './price-tile'
 import ErrorPanel from './error-panel'
@@ -79,7 +80,7 @@ const Style = {
     height: TICKET_HEADING_HEIGHT
   },
   title: {
-    color: '#86e2fb',
+    color: Constants.color.neonBlue,
     fontSize: 24,
     lineHeight: TICKET_HEADING_HEIGHT + 'px',
     margin: 0,
