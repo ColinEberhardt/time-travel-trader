@@ -2,6 +2,8 @@
 import * as React from 'react'
 /* tslint:enable */
 
+import * as Radium from 'radium'
+
 import Constants from './constants'
 import * as OrderReducer from '../store/reducer/order'
 import PriceTile from './price-tile'
@@ -23,7 +25,6 @@ type Properties = StateProperties & DispatchProperties
 
 const TICKET_WIDTH = 320
 const TICKET_HEADING_HEIGHT = 52
-const LIGHT_GRAY = '#9c9ea2'
 const BORDER_WIDTH = 2
 const AMOUNT_CONTAINER_HEIGHT = 24
 const AMOUNT_FONT_SIZE = 16
@@ -46,9 +47,9 @@ const Style = {
   },
   amount: {
     backgroundColor: 'transparent',
-    border: BORDER_WIDTH + 'px solid ' + LIGHT_GRAY,
+    border: BORDER_WIDTH + 'px solid ' + Constants.color.lightGray,
     borderRadius: 3,
-    color: LIGHT_GRAY,
+    color: Constants.color.lightGray,
     fontSize: AMOUNT_FONT_SIZE,
     width: 230,
     height: AMOUNT_CONTAINER_HEIGHT,
@@ -56,16 +57,16 @@ const Style = {
     paddingLeft: 5
   },
   errorBorder: {
-    borderColor: 'red'
+    borderColor: Constants.color.red
   },
   amountCurrency: {
     fontSize: AMOUNT_FONT_SIZE,
     position: 'absolute',
     top: 1,
     right: 3,
-    color: LIGHT_GRAY,
+    color: Constants.color.lightGray,
     height: AMOUNT_CONTAINER_HEIGHT + BORDER_WIDTH * 2 + 'px',
-    borderLeft: '2px solid ' + LIGHT_GRAY,
+    borderLeft: '2px solid ' + Constants.color.lightGray,
     padding: '0 10px',
     lineHeight: AMOUNT_CONTAINER_HEIGHT + BORDER_WIDTH * 2 + 'px'
   },
@@ -89,18 +90,22 @@ const Style = {
   },
   closeButton: {
     backgroundColor: 'transparent',
-    color: '#72767e',
+    color: 'white',
     height: TICKET_HEADING_HEIGHT,
     cursor: 'pointer',
     fontSize: 40,
     position: 'absolute',
+    opacity: 0.5,
     lineHeight: TICKET_HEADING_HEIGHT - 10 + 'px',
     right: 10,
-    top: 0
+    top: 0,
+    ':hover': {
+      opacity: 1
+    }
   },
 }
 
-export const Order = (props: Properties) =>
+const OrderComponent = (props: Properties) =>
   <div style={Style.ticket}>
     <div style={Style.ticketHeading}>
       <div style={Style.closeButton} onClick={props.close}>&times;</div>
@@ -112,10 +117,16 @@ export const Order = (props: Properties) =>
         <PriceTile price={props.order.bidAsk[1]} side='SELL'/>
       </div>
       <div style={Style.amountContainer}>
-      <div style={Style.amountCurrency}>{props.order.baseCurrency}</div>
-        <input style={Style.amount} value={props.order.amountFormatted}
-          onChange={props.amountUpdated} onBlur={props.amountBlurred} />
+        <div style={props.order.errors.length > 0 ? [Style.amountCurrency, Style.errorBorder] : Style.amountCurrency}>
+          {props.order.baseCurrency}
+        </div>
+        <input style={props.order.errors.length > 0 ? [Style.amount, Style.errorBorder] : Style.amount}
+          value={props.order.amountFormatted}
+          onChange={props.amountUpdated}
+          onBlur={props.amountBlurred} />
       </div>
       <ErrorPanel errors={props.order.errors}/>
     </div>
   </div>
+
+  export const Order = Radium(OrderComponent)

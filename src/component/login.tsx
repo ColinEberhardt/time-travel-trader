@@ -92,9 +92,10 @@ const Style = {
   }
 }
 
-const Login = (props: Properties) => {
-  const disabled = !props.state.loginEnabled || props.state.loginInProgress;
-  return <div style={Style.container}>
+const isDisabled = (props: Properties) => !props.state.loginEnabled || props.state.loginInProgress;
+
+const Login = (props: Properties) =>
+  <div style={Style.container}>
     <form>
       <input
         style={[
@@ -119,13 +120,13 @@ const Login = (props: Properties) => {
         placeholder='password'>
       </input>
       <button type='submit'
-        style={disabled ? [Style.button, Style.disabledButton] : Style.button}
+        style={isDisabled(props) ? [Style.button, Style.disabledButton] : Style.button}
         onClick={props.login}
-        disabled={disabled}>
+        disabled={isDisabled(props)}>
         login
       </button>
-      <p style={{display: 'inline', marginLeft: 10}}>{props.state.failureMessage}</p>
+      <p>{props.state.failureMessage}</p>
     </form>
   </div>
-}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Radium(Login))
