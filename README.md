@@ -4,6 +4,15 @@ An app that demonstrates the use of Hot Module Reload and Time Travel within the
 
 ![screenshot](/time-travel-trader.png)
 
+The application is built with the following technologies:
+
+ - React
+ - Redux
+ - TypeScript
+ - Radium
+ - Webpack
+ - OpenFin / Electron
+ 
 ## Getting Started
 
 Install dependencies:
